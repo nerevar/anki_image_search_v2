@@ -6,12 +6,12 @@ Forked from https://ankiweb.net/shared/info/885589449, https://github.com/haoxua
 
 ## Installation
 
-You can now install Review Heatmap by simply copying the add-on code `432495333` into Anki (under Tools → Add-ons → Get Add-ons). You no longer need to download anything manually!
+You can now install this addon by simply copying the add-on code `432495333` into Anki (under Tools → Add-ons → Get Add-ons). You no longer need to download anything manually!
 
 More details here: https://ankiweb.net/shared/info/432495333
 
 ## How
-On the card editor (from either the "Add" or "Browse" dialog), there are three buttons added right before the **More** button on the upper right portion of the editor: **Search Image**, **Previous Image** and **Next Image**.
+On the card editor (from either the "Add" or "Browse" dialog), there are three buttons added on the upper right portion of the editor: **Search Image**, **Previous Image** and **Next Image**.
 
 Basically just type in your search query in the field with name "English" in the card, and use those buttons. The image will be inserted/updated in the field "Image".
 
