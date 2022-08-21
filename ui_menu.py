@@ -12,14 +12,14 @@ def settings_dialog():
     box_query = QHBoxLayout()
     label_query = QLabel("Query field:")
     text_query = QLineEdit("")
-    text_query.setMinimumWidth(100)
+    text_query.setMinimumWidth(200)
     box_query.addWidget(label_query)
     box_query.addWidget(text_query)
 
     box_image = QHBoxLayout()
     label_image = QLabel("Image field:")
     text_image = QLineEdit("")
-    text_image.setMinimumWidth(100)
+    text_image.setMinimumWidth(200)
     box_image.addWidget(label_image)
     box_image.addWidget(text_image)
 

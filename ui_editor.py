@@ -15,6 +15,9 @@ def display_image(editor, img_filename, image_dest_field):
 def search_image(editor):
     query = utils.get_note_query(editor.note)
     image_url = search.get_result_by_query(query)
+    if not image_url:
+        utils.report("Couldn't find images for query '{}' :(".format(query))
+
     filename = utils.save_image_to_library(editor, image_url)
     if not filename:
         return
