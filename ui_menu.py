@@ -2,6 +2,9 @@ from aqt import mw
 from aqt.utils import qconnect
 from aqt.qt import *
 
+from . import utils
+
+
 def settings_dialog():
     dialog = QDialog(mw)
     dialog.setWindowTitle("Anki Image Search v2 Addon")
@@ -12,7 +15,7 @@ def settings_dialog():
     text_query.setMinimumWidth(100)
     box_query.addWidget(label_query)
     box_query.addWidget(text_query)
-    
+
     box_image = QHBoxLayout()
     label_image = QLabel("Image field:")
     text_image = QLineEdit("")
@@ -24,12 +27,12 @@ def settings_dialog():
     cancel = QDialogButtonBox(QDialogButtonBox.Cancel)
 
     def init_configui():
-        config = mw.addonManager.getConfig(__name__)
+        config = utils.get_config()
         text_query.setText(config["query_field"])
         text_image.setText(config["image_field"])
 
-    def confirm_config():
-        config = mw.addonManager.getConfig(__name__)
+    def save_config():
+        config = utils.get_config()
         config["image_field"] = text_query.text()
         config["query_field"] = text_image.text()
         mw.addonManager.writeConfig(__name__, config)
@@ -47,7 +50,7 @@ def settings_dialog():
         layout.addWidget(cancel)
 
     init_configui()
-    ok.clicked.connect(confirm_config)
+    ok.clicked.connect(save_config)
     cancel.clicked.connect(dialog.close)
 
     layout_everything()

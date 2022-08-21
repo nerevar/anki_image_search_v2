@@ -9,6 +9,7 @@ INDICES = {}
 
 
 def get_current_image_url_by_query(query):
+    query = stripHTMLMedia(query)
     if query not in YIMAGES or not YIMAGES[query] or \
             query not in INDICES or INDICES[query] < 0 or INDICES[query] >= len(YIMAGES[query]):
         return None

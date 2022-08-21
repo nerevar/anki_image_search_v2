@@ -1,6 +1,7 @@
 import os
 from os.path import dirname, abspath, realpath
 import urllib
+import importlib
 from tempfile import mkstemp
 
 from aqt import mw
@@ -13,19 +14,26 @@ def path_to(*args):
     return os.path.join(CURRENT_DIR, *args)
 
 
-def get_note_query_image_fields(note):
+def get_config():
+    return mw.addonManager.getConfig(__name__)
+
+
+def get_note_query(note):
     field_names = mw.col.models.fieldNames(note.model())
 
-    config = mw.addonManager.getConfig(__name__)
+    query_field = field_names.index(get_config()["query_field"])
+    return note.fields[query_field]
 
-    i_query_field = field_names.index(config["query_field"])
-    i_image_field = field_names.index(config["image_field"])
-    return note.fields[i_query_field], i_image_field
+
+def get_note_image_field_index(note):
+    field_names = mw.col.models.fieldNames(note.model())
+
+    return field_names.index(get_config()["image_field"])
 
 
 def save_file_to_library(editor, image_url, prefix, suffix):
     (i_file, temp_path) = mkstemp(prefix=prefix, suffix=suffix)
-    
+
     with urllib.request.urlopen(image_url) as response:
         image_binary = response.read()
 
@@ -51,8 +59,15 @@ def save_image_to_library(editor, image_url):
 def image_tag(image_url):
     attrs = {"src": image_url, "class": "imgsearch"}
 
-    tag_components = [
-        '{}="{}"'.format(key, val) for key, val in attrs.items()
-    ]
+    tag_components = ['{}="{}"'.format(key, val) for key, val in attrs.items()]
 
     return "<img " + " ".join(tag_components) + " />"
+
+
+def report(s_err):
+    if importlib.util.find_spec("aqt"):
+        from aqt.utils import showWarning
+
+        showWarning(s_err, title="Image Search")
+    else:
+        print(s_err)
