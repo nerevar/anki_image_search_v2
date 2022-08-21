@@ -12,11 +12,12 @@ Basically just type in your search query in the field with name "English" in the
 ![Example](./images/example.png)
 
 Also you can change field names in settings:
+
 ![Settings](./images/settings.png)
 
 Yandex Image Search provide good results for English or Russian queries, other languages have not been tested.
 
-You can track the project in [github](https://github.com/nerevar/anki_image_search_v2).
+You can track the project on [github](https://github.com/nerevar/anki_image_search_v2).
 
 ## License
 
@@ -27,8 +28,8 @@ The icons are provided by [Open Iconic](https://useiconic.com/open). Open Iconic
 This project is under [GPLv2](./LICENSE).
 
 ## Why
-The main reason I did that, is to make learning other languages more comfortable for me (and others) because original Image Search addon, which uses Google Images Search, looked abandoned and didn't work.
+The main reason I did that, is to make learning other languages more comfortable for me (and others) because original [Image Search](https://ankiweb.net/shared/info/885589449) addon, which uses Google Images Search, looked abandoned and didn't work.
 And, of course, because of 2 free evennings :)
 
-Also, original author of addon writes, that he knows just how important it is to be able to point at pictures and recall words without going through a translation phase. He got annoyed doing it by hand at around 20 cards.
+Also, I agree with original author of addon: he writes, that he knows just how important it is to be able to point at pictures and recall words without going through a translation phase. He got annoyed doing it by hand at around 20 cards.
 
