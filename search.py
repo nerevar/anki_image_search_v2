@@ -1,6 +1,8 @@
 from anki.utils import stripHTMLMedia
 
 from .yimages import get_yimages
+from . import utils
+
 
 # storage of lists of images by queries
 YIMAGES = {}
@@ -25,6 +27,7 @@ def get_result_by_query(query):
         INDICES[query] = 0
         return get_current_image_url_by_query(query)
     else:
+        utils.report("Couldn't find images for query '{}' :(".format(query))
         INDICES[query] = -1
         return None
 

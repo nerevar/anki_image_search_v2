@@ -64,10 +64,10 @@ def image_tag(image_url):
     return "<img " + " ".join(tag_components) + " />"
 
 
-def report(s_err):
+def report(text):
     if importlib.util.find_spec("aqt"):
         from aqt.utils import showWarning
 
-        showWarning(s_err, title="Image Search")
+        showWarning(text, title="Anki Image Search v2 Addon")
     else:
-        print(s_err)
+        print(text)

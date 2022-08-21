@@ -3,6 +3,7 @@ import json
 import requests
 import urllib.parse
 
+from . import utils
 
 requests.packages.urllib3.disable_warnings()
 
@@ -22,6 +23,7 @@ def get_yimages_response(query):
         r = requests.get(url, verify=False, headers=headers)
         return r.json()
     except:
+        utils.report('Request error\n\n' + url)
         return None
 
 
@@ -36,7 +38,8 @@ def parse_yimages_response(response):
         assert len(html) > 0
         assert 'data-bem' in html
         assert 'serp-item' in html
-    except:
+    except Exception as e:
+        utils.report('Error parsing json response\n\n' + repr(e))
         return result
 
     # undocumented unofficial parsing of Yandex Images response 
