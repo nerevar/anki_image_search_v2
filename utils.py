@@ -19,10 +19,18 @@ def get_config():
 
 
 def get_note_query(note):
-    field_names = mw.col.models.fieldNames(note.model())
+    field_names = mw.col.models.fieldNames(note.model())    
+    query_field_name = get_config().get("query_field", "")
+    
+    if query_field_name in field_names:
+        query_field = field_names.index(query_field_name)
+        return note.fields[query_field]
+    
+    if importlib.util.find_spec("aqt"):
+        from aqt.utils import showWarning
+        showWarning(f"Field '{query_field_name}' is absent, please check addon settings. Existing fields: {field_names}", title="Anki Image Search v2 Addon")
 
-    query_field = field_names.index(get_config()["query_field"])
-    return note.fields[query_field]
+    return None
 
 
 def get_note_image_field_index(note):

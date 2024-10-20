@@ -1,3 +1,10 @@
+try:
+    from PyQt6 import QtCore
+    qt_version = 6
+except ImportError:
+    from PyQt5 import QtCore
+    qt_version = 5
+
 from aqt import mw
 from aqt.utils import qconnect
 from aqt.qt import *
@@ -23,8 +30,12 @@ def settings_dialog():
     box_image.addWidget(label_image)
     box_image.addWidget(text_image)
 
-    ok = QDialogButtonBox(QDialogButtonBox.Ok)
-    cancel = QDialogButtonBox(QDialogButtonBox.Cancel)
+    if qt_version == 5:
+        ok = QDialogButtonBox(QDialogButtonBox.Ok)
+        cancel = QDialogButtonBox(QDialogButtonBox.Cancel)
+    else:
+        ok = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
+        cancel = QDialogButtonBox(QDialogButtonBox.StandardButton.Cancel)
 
     def init_configui():
         config = utils.get_config()
@@ -33,8 +44,8 @@ def settings_dialog():
 
     def save_config():
         config = utils.get_config()
-        config["image_field"] = text_query.text()
-        config["query_field"] = text_image.text()
+        config["query_field"] = text_query.text()
+        config["image_field"] = text_image.text()
         mw.addonManager.writeConfig(__name__, config)
 
         dialog.close()
@@ -55,7 +66,10 @@ def settings_dialog():
 
     layout_everything()
 
-    dialog.exec_()
+    if qt_version == 5:
+        dialog.exec_()
+    else:
+        dialog.exec()
 
 
 def init_menu():
